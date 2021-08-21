@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-     final String USERTABLE = "users";
+    private final String USERTABLE = "user";
 
     public UserDaoJDBCImpl() {
     }
 
     public void createUsersTable() {
         try(Connection  connection = new Util().getConnectionJDBC()) {
-            String sql = String.format("CREATE TABLE %s(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(45), lastName VARCHAR(45), age INT)", USERTABLE);
+            String sql = String.format("CREATE TABLE %s(id bigint PRIMARY KEY AUTO_INCREMENT, name VARCHAR(45), lastName VARCHAR(45), age INT)", USERTABLE);
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException e) {
